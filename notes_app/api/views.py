@@ -1,7 +1,7 @@
-from rest_framework import serializers
-from ..models import Note  
+from rest_framework import viewsets
+from ..models import Note
+from .serializers import NoteSerializer  
 
-class NoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Note
-        fields = ['id', 'title', 'content', 'marked', 'trash']
+class NoteViewSet(viewsets.ModelViewSet):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
